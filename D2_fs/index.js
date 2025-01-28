@@ -36,5 +36,9 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Server running at port ${port}`);
+      if (err) {
+        console.log(`Error: ${err}`);
+        return false;
+      }
+  console.log('Server running at port'+port);
 });
