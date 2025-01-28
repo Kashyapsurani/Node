@@ -40,5 +40,5 @@ server.listen(port, (err) => {
         console.log(`Error: ${err}`);
         return false;
       }
-  console.log('Server running at port'+port);
+  console.log('Server running at port' +port);
 });
