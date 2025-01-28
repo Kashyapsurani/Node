@@ -35,8 +35,8 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(port, () => {
-      if (err) {
+server.listen(port, (err) => {
+      if(err) {
         console.log(`Error: ${err}`);
         return false;
       }
