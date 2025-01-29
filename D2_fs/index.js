@@ -3,36 +3,31 @@ const port = 3000;
 const fs = require("fs");
 
 const server = http.createServer((req, res) => {
+  let filename = '';
   switch (req.url) {
     case "/":
-      fs.readFile("./index.html", (err, data) => {
-        if (!err) {
-          res.write(data);
-        }
-        res.end();
-      });
+      filename = "./index.html";
       break;
     case "/about.html":
-      fs.readFile("./about.html", (err, data) => {
-        if (!err) {
-          res.write(data);
-        }
-        res.end();
-      });
+      filename = "./about.html";
       break;
     case "/contact.html":
-      fs.readFile("./contact.html", (err, data) => {
-        if (!err) {
-          res.write(data);
-        }
-        res.end();
-      });
+      filename = "./contact.html";
       break;
     default:
       res.write("404 Not Found");
       res.end();
       break;
   }
+  fs.readFile(filename, (err, data) => {
+    if (err) {
+      res.write("404 Not Found");
+      res.end();
+    } else {
+      res.write(data);
+      res.end();
+    }
+  });
 });
 
 server.listen(port, (err) => {
