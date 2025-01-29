@@ -3,7 +3,7 @@ const port = 3000;
 const fs = require("fs");
 
 const server = http.createServer((req, res) => {
-  let filename = '';
+  let filename = "";
   switch (req.url) {
     case "/":
       filename = "./index.html";
@@ -20,10 +20,7 @@ const server = http.createServer((req, res) => {
       break;
   }
   fs.readFile(filename, (err, data) => {
-    if (err) {
-      res.write("404 Not Found");
-      res.end();
-    } else {
+    if (!err) {
       res.write(data);
       res.end();
     }
@@ -31,9 +28,9 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, (err) => {
-      if(err) {
-        console.log(`Error: ${err}`);
-        return false;
-      }
-  console.log('Server running at port' +port);
+  if (err) {
+    console.log(`Error: ${err}`);
+    return false;
+  }
+  console.log("Server running at port" + port);
 });
