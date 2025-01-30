@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>CRUD Operation</h1>
+
+    <form action="/insertData" method="post">
+        <table border="1">
+            <tr>
+                <td>Id</td>
+                <td><input type="text" name="userId" id=""></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" id=""></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email" id=""></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" id=""></td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td><input type="number" name="phone" id=""></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="" id=""></td>
+            </tr>
+        </table>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Number</th>
+        </tr>
+        <% userdata.map((val)=>{ %>
+            <tr>
+
+                <td>
+                    <%= val.userId %>
+                </td>
+                <td>
+                    <%= val.name %>
+                </td>
+                <td>
+                    <%= val.email %>
+                </td>
+                <td>
+                    <%= val.password %>
+                </td>
+                <td>
+                    <%= val.phone %>
+                </td>
+            </tr>
+            <% }) %>
+    </table>
+</body>
+
+</html>
