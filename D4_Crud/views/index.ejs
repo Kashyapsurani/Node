@@ -4,71 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CRUD Operation</title>
 </head>
 
 <body>
 
     <h1>CRUD Operation</h1>
 
+    <!-- Form to Insert New User -->
     <form action="/insertData" method="post">
         <table border="1">
             <tr>
                 <td>Id</td>
-                <td><input type="text" name="userId" id=""></td>
+                <td><input type="text" name="userId" required></td>
             </tr>
             <tr>
                 <td>Name</td>
-                <td><input type="text" name="name" id=""></td>
+                <td><input type="text" name="name" required></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="email" name="email" id=""></td>
+                <td><input type="email" name="email" required></td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td><input type="password" name="password" id=""></td>
+                <td><input type="password" name="password" required></td>
             </tr>
             <tr>
                 <td>Phone Number</td>
-                <td><input type="number" name="phone" id=""></td>
+                <td><input type="number" name="phone" required></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" name="" id=""></td>
+                <td><input type="submit" value="Add User"></td>
             </tr>
         </table>
     </form>
 
+    <!-- Display Users Table -->
     <table border="1">
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
-            <th>Number</th>
+            <th>Phone</th>
         </tr>
-        <% userdata.map((val)=>{ %>
+        <% userdata.map((user)=> { %>
             <tr>
-
                 <td>
-                    <%= val.userId %>
+                    <%= user.userId %>
                 </td>
                 <td>
-                    <%= val.name %>
+                    <%= user.name %>
                 </td>
                 <td>
-                    <%= val.email %>
+                    <%= user.email %>
                 </td>
                 <td>
-                    <%= val.password %>
+                    <%= user.password %>
                 </td>
                 <td>
-                    <%= val.phone %>
+                    <%= user.phone %>
                 </td>
             </tr>
             <% }) %>
     </table>
+
 </body>
 
 </html>

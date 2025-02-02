@@ -1,9 +1,11 @@
 const express = require("express");
-const port = 3000;
 const app = express();
-app.set("view engine", "ejs");
-app.use(express.urlencoded());
+const port = 3000;
 
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: true }));
+
+// Sample user data
 var userdata = [
   {
     userId: 1,
@@ -28,33 +30,31 @@ var userdata = [
   },
 ];
 
+// Route: Home Page (Displays Users)
 app.get("/", (req, res) => {
-  res.render("index", {
-    userdata: userdata
-  });
+  res.render("index", { userdata: userdata });
 });
 
+// Route: Insert Data
 app.post("/insertData", (req, res) => {
-  var userId = req.body.userId;
+  var userId = parseInt(req.body.userId);
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
   var phone = req.body.phone;
 
-  var data = {
-    userId: userId,
-    name: name,
-    email: email,
-    password: password,
-    phone: phone,
-  };
-  userdata.push(data);
-  res.redirect("/"); 
+  var newUser = { userId, name, email, password, phone };
+
+  userdata.push(newUser); 
+  console.log(userdata);
+
+  res.redirect("/");
 });
 
+// Start Server
 app.listen(port, (error) => {
-  if(error) {
+  if (error) {
     console.log("Error running the server");
   }
   console.log("Server is running on port", port);
-})
+});
