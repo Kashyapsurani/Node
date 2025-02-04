@@ -36,6 +36,9 @@ app.post("/deleteTodo", (req, res) => {
 });
 
 // Start Server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(port, (error) => {
+  if(error) {
+    console.log("Error starting server");
+  }
+  console.log(`Server is running on http://localhost:${port}`);
 });
