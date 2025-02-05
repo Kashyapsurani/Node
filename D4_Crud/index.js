@@ -45,10 +45,29 @@ app.post("/insertData", (req, res) => {
 
   var newUser = { userId, name, email, password, phone };
 
-  userdata.push(newUser); 
+  userdata.push(newUser);
   console.log(userdata);
 
   res.redirect("/");
+});
+
+app.get("/DeleteData", (req, res) => {
+  let UserId = req.query.userid;
+  let ans = userdata.filter((item) => {
+    return item.userId != UserId;
+  });
+  userdata = ans;
+  return res.redirect("/");
+});
+
+app.get("/EditData", (req, res) => {
+  let UserId = req.query.userid;
+  let ans = userdata.filter((item) => {
+    return item.userId == UserId;
+  });
+  return res.render("edit", {
+    editData: ans[0],
+  });
 });
 
 // Start Server

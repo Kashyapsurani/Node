@@ -67,6 +67,10 @@
                 <td>
                     <%= user.phone %>
                 </td>
+                <td>
+                    <button><a href="/DeleteData?userid=<%=user.userId%>">Delete</a></button>
+                    <button><a href="/EditData?userid=<%=user.userId%>">Update</a></button>
+                </td>
             </tr>
             <% }) %>
     </table>

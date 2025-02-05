@@ -73,6 +73,22 @@
             padding: 5px 10px;
             cursor: pointer;
             border-radius: 4px;
+            width: 60px;
+        }
+
+        .update-btn {
+            background: #ffbf00;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 60px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
         }
     </style>
 </head>
@@ -94,10 +110,10 @@
                 <span>
                     <%= user.todo %>
                 </span>
-                <form action="/deleteTodo" method="post" style="margin: 0;">
-                    <input type="hidden" name="todoId" value="<%= user.todoId %>">
-                    <button type="submit" class="delete-btn">Delete</button>
-                </form>
+                <div class="cantener">
+                    <button class="delete-btn"><a href="/DeleteData?userid=<%-user.userId%>">Delete</a></button>
+                    <button class="update-btn"><a href="/EditData?userid=<%=user.userId%>">Edit</a></button>
+                </div>
             </div>
             <% }) %>
     </div>

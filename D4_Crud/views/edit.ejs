@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <form action="/insertData" method="post">
+            <table border="1">
+                <tr>
+                    <td>Id</td>
+                    <td><input type="text" name="userId" value="<%= editData.userId %>" required></td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" name="name"value="<%= editData.name %>"  required></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email" value="<%= editData.email %>" required></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password"value="<%= editData.password %>"  required></td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td><input type="number" name="phone" value="<%= editData.phone %>"  required></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Add User"></td>
+                </tr>
+            </table>
+        </form>
+</body>
+</html>
