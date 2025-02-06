@@ -4,68 +4,76 @@ const port = 5050;
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public")); // Serve static files like CSS
 
-// Sample user data
+// In-memory data for todos
 let userTodo = [
-  { userId: 1, todo: "Make a project" },
+  { userId: 1, todo: "Watch a movie" },
   { userId: 2, todo: "Read a book" },
   { userId: 3, todo: "Go for a walk" },
 ];
 
-
-// Route: Home Page (Displays Users)
+// Home route to display todos
 app.get("/", (req, res) => {
   res.render("index", { userTodo: userTodo });
 });
 
-// Route: Insert Data
+// Insert new todo or update existing one
 app.post("/insertTodo", (req, res) => {
-  var userId = req.body.userId ? parseInt(req.body.userId) : generateUniqueId();
-  var todo = req.body.todo;
+  let editid = req.body.userId;
+  let todo = req.body.todo;
 
-  var newUser = { userId, todo };
-  userTodo.push(newUser);
+  if (editid) {
+    // Update existing todo
+    const index = userTodo.findIndex((item) => item.userId == editid);
 
-  console.log(userTodo);
-  res.redirect("/");
+    if (index !== -1) {
+      userTodo[index].todo = todo; // Update the todo
+      console.log("Record Successfully Updated");
+    } else {
+      console.log("Record not found for update");
+    }
+    return res.redirect("/");
+  } else {
+    // Add new todo
+    let obj = {
+      userId: generateUniqueId(),
+      todo: todo,
+    };
+    userTodo.push(obj);
+    return res.redirect("/");
+  }
 });
 
-// Function to generate a unique ID
+// Generate unique ID for new todos
 function generateUniqueId() {
   return userTodo.length > 0
     ? Math.max(...userTodo.map((user) => user.userId)) + 1
     : 1;
 }
 
-
+// Delete todo by userId
 app.get("/DeleteData", (req, res) => {
   let UserId = req.query.userid;
-  let ans = userTodo.filter((item) => {
-    return item.userId != UserId;
-  });
-  userTodo = ans;
+  userTodo = userTodo.filter((item) => item.userId != UserId);
   return res.redirect("/");
 });
 
+// Edit todo by userId
 app.get("/EditData", (req, res) => {
   let UserId = req.query.userid;
-  let ans = userTodo.filter((item) => {
-    return item.userId == UserId;
-  });
+  const editData = userTodo.find((item) => item.userId == UserId);
 
-  if (ans.length === 0) {
-    return res.status(404).send("User not found");
+  if (editData) {
+    res.render("edit", { editData: editData });
+  } else {
+    res.redirect("/");
   }
-
-  return res.render("edit", { editData: ans[0] });
 });
 
-
-
-
-// Start Server
+// Start server
 app.listen(port, (error) => {
-  if(error) {
+  if (error) {
     console.log("Error starting server");
   }
   console.log(`Server is running on http://localhost:${port}`);
