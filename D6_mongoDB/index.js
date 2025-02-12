@@ -7,14 +7,17 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded());
 
 app.get("/", (req, res) => {
-  addmin.find({}).then((adddata) => {
-    return res.render("index", {
+  addmin
+    .find({})
+    .then((adddata) => {
+      return res.render("index", {
         data: adddata,
-      })
-  }).catch((error) => {
-    console.log(`Error: ${error}`);
-    return res.send("Error");
-  });
+      });
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
+      return res.send("Error");
+    });
 });
 
 app.post("/insertData", (req, res) => {
@@ -48,6 +51,38 @@ app.get("/deleteData", (req, res) => {
     .catch((error) => {
       console.log(`Error: ${error}`);
       return res.send("Error");
+    });
+});
+
+app.get("/editData", (req, res) => {
+  const Id = req.query.id;
+  addmin.findById(Id).then((user) => {
+    if (!user) {
+      return res.status(400).send("user not Found");
+    }
+    return res.render("edit", {
+      user: user,
+    });
+  });
+});
+
+app.post("/updateData", (req, res) => {
+  const Id = req.query.id;
+  const { name, email, password, phone, address } = req.body;
+  addmin
+    .findByIdAndUpdate(Id, {
+      name: name,
+      email: email,
+      password: password,
+      phone: phone,
+      address: address,
+    })
+    .then((data) => {
+      console.log("Data Uplode");
+      return res.redirect('/')
+    })
+    .catch((errr) => {
+      console.log(errr);
     });
 });
 

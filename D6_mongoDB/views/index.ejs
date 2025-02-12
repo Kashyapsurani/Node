@@ -123,11 +123,30 @@
             text-decoration: none;
             border-radius: 5px;
             transition: 0.3s;
+            margin-bottom: 10px;
         }
 
         .delete a:hover {
             background: darkred;
         }
+
+.update a {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    background: orange;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.update a:hover {
+    background: darkorange;
+    transform: scale(1.05);
+}
+
     </style>
 </head>
 
@@ -176,6 +195,7 @@
                     <%= item.address %>
                 </p>
                 <div class="delete"><a href="/deleteData?id=<%= item.id %>">Delete</a></div>
+                <div class="update"><a href="/editData?id=<%= item.id %>">Update</a></div>
             </div>
             <% }) %>
     </div>
