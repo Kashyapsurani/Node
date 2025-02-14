@@ -20,6 +20,10 @@ const addminSchema = new mongoose.Schema({
     address:{
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        require :true
     }
 })
 
