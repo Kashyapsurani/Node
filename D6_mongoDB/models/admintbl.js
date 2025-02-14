@@ -21,6 +21,10 @@ const addminSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    image: {
+        type: String,
+        require :true
+    }
 })
 
 const andim = mongoose.model('admin', addminSchema)
