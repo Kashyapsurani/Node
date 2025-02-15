@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome to the Quiz</title>
+    <style>
+        /* 🎨 General Styles */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 📦 Quiz Container */
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* 🏆 Heading */
+h1 {
+    color: #333;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 📋 Form Elements */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* 🔽 Dropdown */
+select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f9f9f9;
+    transition: 0.3s;
+}
+
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* 🔘 Start Quiz Button */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button, select {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to the Quiz</h1>
+        <form action="/quiz" method="GET">
+            <label>Select Quiz Category:</label>
+            <select name="category">
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="javascript">JavaScript</option>
+                <option value="react">React Js</option>
+            </select>
+            <button type="submit">Start Quiz</button>
+        </form>
+
+    </div>
+</body>
+
+</html>

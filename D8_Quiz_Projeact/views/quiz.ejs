@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Quiz</title>
+    <style>
+/* 🎨 General Styles */
+body {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 📦 Quiz Container */
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* 🏆 Heading */
+h1 {
+    color: #333;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* ❓ Question Section */
+.question {
+    margin: 20px 0;
+    text-align: left;
+}
+
+/* 🎤 Question Text */
+.question p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ✅ Answer Options */
+label {
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    transition: 0.3s;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+label:hover {
+    background: #e9ecef;
+}
+
+/* 🟢 Submit Button */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #218838;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .question p {
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Quiz Time - <%= category.toUpperCase() %>!</h1>
+        <form action="/result" method="POST">
+            <% questions.forEach((q, index)=> { %>
+                <div class="question">
+                    <p><strong>
+                            <%= q.question %>
+                        </strong></p>
+                    <% q.options.forEach(option=> { %>
+                        <label>
+                            <input type="radio" name="q<%= index %>" value="<%= option %>" required>
+                            <%= option %>
+                        </label>
+                        <% }); %>
+                </div>
+                <% }); %>
+                    <input type="hidden" name="category" value="<%= category %>">
+                    <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

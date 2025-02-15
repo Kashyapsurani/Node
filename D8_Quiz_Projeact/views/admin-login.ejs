@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin Login</title>
+    <style>
+        /* 🌟 General Styles */
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        /* 🏆 Login Container */
+        form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        /* 📝 Form Fields */
+        label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            width: 100%;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* 🔘 Login Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* 📱 Responsive Design */
+        @media (max-width: 400px) {
+            form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Admin Login</h1>
+    <form action="/admin/login" method="POST">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+        <br>
+        <label>Password:</label>
+        <input type="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>
