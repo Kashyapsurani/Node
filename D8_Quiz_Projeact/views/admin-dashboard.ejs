@@ -6,162 +6,166 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <style>
-/* 🎨 General Styles */
-body {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+        /* 🎨 General Styles */
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-/* 📦 Dashboard Container */
-.container {
-    width: 90%;
-    max-width: 900px;
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
+        /* 📦 Dashboard Container */
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
 
-/* 🏆 Headings */
-h1, h2 {
-    text-align: center;
-    color: #333;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
+        /* 🏆 Headings */
+        h1,
+        h2 {
+            text-align: center;
+            color: #333;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
 
-/* 📝 List Sections */
-.question-list, .user-list {
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background: #f9f9f9;
-}
+        /* 📝 List Sections */
+        .question-list,
+        .user-list {
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #f9f9f9;
+        }
 
-/* 📌 List Items */
-li {
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 6px;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
-}
+        /* 📌 List Items */
+        li {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 6px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
 
-li:hover {
-    background: #f1f1f1;
-}
+        li:hover {
+            background: #f1f1f1;
+        }
 
-/* 🚀 Buttons */
-.delete-btn, .update-btn {
-    padding: 8px 14px;
-    font-size: 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-    border: none;
-    font-weight: bold;
-}
+        /* 🚀 Buttons */
+        .delete-btn,
+        .update-btn {
+            padding: 8px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            font-weight: bold;
+        }
 
-.delete-btn {
-    background: #dc3545;
-    color: white;
-}
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
 
-.delete-btn:hover {
-    background: #c82333;
-}
+        .delete-btn:hover {
+            background: #c82333;
+        }
 
-.update-btn {
-    background: #ffc107;
-    color: black;
-    margin-left: 10px;
-}
+        .update-btn {
+            background: #ffc107;
+            color: black;
+            margin-left: 10px;
+        }
 
-.update-btn:hover {
-    background: #d39e00;
-}
+        .update-btn:hover {
+            background: #d39e00;
+        }
 
-/* 🔑 Logout Button */
-.logout-btn {
-    display: block;
-    text-align: center;
-    padding: 12px;
-    background: #007bff;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-    margin-top: 20px;
-}
+        /* 🔑 Logout Button */
+        .logout-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
 
-.logout-btn:hover {
-    background: #0056b3;
-}
+        .logout-btn:hover {
+            background: #0056b3;
+        }
 
-/* 🛠 Add Question Form */
-.add {
-    display: flex;
-    flex-direction: column;
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        /* 🛠 Add Question Form */
+        .add {
+            display: flex;
+            flex-direction: column;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.add input,
-.add select {
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 100%;
-    font-size: 16px;
-}
+        .add input,
+        .add select {
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+        }
 
-.add button {
-    padding: 12px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-}
+        .add button {
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-.add button:hover {
-    background: #218838;
-}
+        .add button:hover {
+            background: #218838;
+        }
 
-/* 📱 Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        padding: 20px;
-    }
+        /* 📱 Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
 
-    h1, h2 {
-        font-size: 18px;
-    }
+            h1,
+            h2 {
+                font-size: 18px;
+            }
 
-    li {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+            li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-    .delete-btn, .update-btn {
-        width: 100%;
-        margin: 5px 0;
-    }
-}
-
+            .delete-btn,
+            .update-btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
     </style>
 </head>
 
@@ -172,12 +176,12 @@ li:hover {
         <ul class="question-list">
             <% questions.forEach(q=> { %>
                 <li>
-                  <div>
-                    <strong>
-                        <%= q.question %>
-                    </strong> - <em>(Category: <%= q.category %>)</em>
-                  </div>
-<br>
+                    <div>
+                        <strong>
+                            <%= q.question %>
+                        </strong> - <em>(Category: <%= q.category %>)</em>
+                    </div>
+                    <br>
                     <form action="/admin/delete-question" method="POST" style="display:inline;">
                         <input type="hidden" name="questionId" value="<%= q.id %>">
                         <button type="submit" class="delete-btn">Delete</button>
@@ -186,6 +190,7 @@ li:hover {
                         <input type="hidden" name="questionId" value="<%= q.id %>">
                         <button type="submit" class="update-btn">Update</button>
                     </form>
+
                 </li>
                 <% }); %>
         </ul>

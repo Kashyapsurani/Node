@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { User, Question, Admin } = require("./models/questions");
-const { MongoClient, ObjectId } = require("mongodb");
 
 const app = express();
 const port = 3000;
@@ -18,21 +17,6 @@ app.use(express.static("public"));
 
 let loggedInUser = null;
 let loggedInAdmin = null;
-
-const client = new MongoClient("mongodb://localhost:27017");
-let db;
-
-async function connectDB() {
-  try {
-    await client.connect();
-    db = client.db("quizApp");
-    console.log("✅ Connected to MongoDB");
-  } catch (error) {
-    console.error("❌ Database connection failed:", error);
-  }
-}
-
-connectDB();
 
 // Ensure Admin Exists
 async function createAdmin() {
@@ -90,8 +74,7 @@ app.get("/quiz", isAuthenticated, async (req, res) => {
   const category = req.query.category || "html";
   const questions = await Question.find({ category });
 
-  if (questions.length === 0)
-    return res.send("No questions found for this category.");
+  if (questions.length === 0) return res.send("No questions found.");
 
   res.render("quiz", { questions, category });
 });
@@ -99,25 +82,36 @@ app.get("/quiz", isAuthenticated, async (req, res) => {
 app.post("/result", isAuthenticated, async (req, res) => {
   const { category } = req.body;
   const questions = await Question.find({ category });
+
+  console.log("🔹 Questions Retrieved:", questions);
+
+  if (!questions || questions.length === 0) {
+    console.error("❌ No questions found for category:", category);
+    return res.send("No questions found.");
+  }
+
   let score = 0;
 
   questions.forEach((q, index) => {
-    if (req.body[`q${index}`] === q.answer.toString()) {
+    const userAnswer = req.body[`q${index}`];
+
+    console.log(`Q${index} - User: ${userAnswer}, Correct: ${q.answer}`);
+
+    if (
+      String(userAnswer).trim().toLowerCase() ===
+      String(q.answer).trim().toLowerCase()
+    ) {
       score++;
     }
   });
+
+  console.log(`✅ Final Score: ${score} / ${questions.length}`);
 
   await User.findByIdAndUpdate(loggedInUser._id, {
     $push: { quizHistory: { category, score, total: questions.length } },
   });
 
   res.render("result", { score, total: questions.length });
-});
-
-// User Profile
-app.get("/profile", isAuthenticated, async (req, res) => {
-  const user = await User.findById(loggedInUser._id);
-  res.render("profile", { user });
 });
 
 // Admin Routes
@@ -154,21 +148,39 @@ app.post("/admin/delete-question", async (req, res) => {
 
   try {
     const question = await Question.findById(questionId);
-
-    if (!question) {
-      console.log("❌ No question found with that ID.");
-      return res.send("No question found with that ID.");
-    }
+    if (!question) return res.send("No question found.");
 
     await Question.findByIdAndDelete(questionId);
-    console.log(`✅ Question with ID ${questionId} deleted.`);
     res.redirect("/admin/dashboard");
   } catch (err) {
-    console.error("❌ Error deleting question:", err);
     res.status(500).send("Error deleting question.");
   }
 });
 
+// Add the route for updating questions
+app.get("/admin/update-question", isAdmin, async (req, res) => {
+  const questionId = req.query.questionId;
+  const question = await Question.findById(questionId);
+
+  if (!question) return res.send("Question not found.");
+
+  res.render("update-question", { question });
+});
+
+app.post("/admin/update-question", isAdmin, async (req, res) => {
+  const { questionId, question, options, answer, category } = req.body;
+  try {
+    await Question.findByIdAndUpdate(questionId, {
+      question,
+      options,
+      answer,
+      category,
+    });
+    res.redirect("/admin/dashboard");
+  } catch (err) {
+    res.status(500).send("Error updating question.");
+  }
+});
 
 app.listen(port, () =>
   console.log(`🚀 Server running at http://localhost:${port}`)

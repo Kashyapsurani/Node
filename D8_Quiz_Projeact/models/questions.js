@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
 const questionSchema = new mongoose.Schema({
   question: String,
   options: [String],
-  answer: Number, // Index of correct answer
+  answer: String, // Ensure this field is present
   category: String,
 });
 
