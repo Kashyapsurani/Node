@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+
+    <style>
+        /* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Header */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Product List */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+li strong {
+    color: #007bff;
+}
+
+/* Links */
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+a:hover {
+    background: #0056b3;
+}
+
+    </style>
+
+</head>
+
+<body>
+    <h1>Product List</h1>
+    <ul>
+        <% products.forEach(product=> { %>
+            <li><strong>ID:</strong>
+                <%= product.id %> <br> <strong>Name:</strong>
+                    <%= product.name %> <br> <strong>Price:</strong> $<%= product.price %>
+            </li>
+            <% }); %>
+    </ul>
+    <a href="/">Go to Home</a>
+</body>
+
+</html>

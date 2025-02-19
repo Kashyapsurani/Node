@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        /* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Header */
+h1 {
+    color: #333;
+}
+
+/* User List */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin: 10px;
+    padding: 10px;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+li strong {
+    color: #007bff;
+}
+
+/* Links */
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+a:hover {
+    background: #0056b3;
+}
+
+    </style>
+</head>
+
+<body>
+    <h1>User List</h1>
+    <ul>
+        <% users.forEach(user=> { %>
+            <li><strong>ID:</strong>
+                <%= user.id %> <br> <strong>Name:</strong>
+                    <%= user.name %>
+            </li>
+            <% }); %>
+    </ul>
+
+    <a href="/products">View All Products</a>
+</body>
+
+</html>
