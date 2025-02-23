@@ -1,0 +1,171 @@
+/* Global Styling */
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f0f8ff;
+    /* Light Blue Background */
+    color: #003366;
+    /* Dark Blue Text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Booking Container */
+.booking-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+/* Headings */
+h1 {
+    color: #0056b3;
+    /* Dark Blue */
+    margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+    display: block;
+    font-size: 16px;
+    margin: 10px 0 5px;
+}
+
+/* Inputs */
+input {
+    width: 94%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
+}
+
+/* Seating Layout */
+.seating {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+/* Seat Button Styling */
+.seat {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.seat:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Selected Seat */
+.seat.selected {
+    background-color: #0056b3;
+    color: white;
+}
+
+/* Booked Seat */
+.seat.booked {
+    background-color: grey;
+    color: white;
+    border-color: grey;
+    cursor: not-allowed;
+}
+
+/* Book Button */
+.book-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.book-btn:hover {
+    background-color: #0056b3;
+}
+
+.seat {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.seat.selected {
+    background-color: green;
+    color: white;
+}
+
+.seat.booked {
+    background-color: red;
+    color: white;
+    cursor: not-allowed;
+}
+
+.book-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.book-btn:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .booking-container {
+        width: 90%;
+    }
+
+    .seat {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
