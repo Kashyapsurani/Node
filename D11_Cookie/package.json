@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "cookie": "^1.0.2",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  }
+}
