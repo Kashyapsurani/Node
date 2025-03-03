@@ -306,7 +306,7 @@ const App = () => {
       </StyledForm>
 
       <ScrollableListContainer>
-        <List sx={{ mt: 3 }}>
+        <List >
           {transactions.sort((a, b) => new Date(a.date) - new Date(b.date)).map((tx) => (
             <StyledListItem key={tx._id}>
               <StyledCard sx={{ borderLeft: `5px solid ${tx.type === "income" ? "#4caf50" : "#f44336"}` }}>
