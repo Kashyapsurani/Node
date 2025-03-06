@@ -4,10 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dashboard</title>
+    <style>
+        /* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    margin: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+/* Form Container */
+form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+        h1 ,p {
+            color: #ffffff;
+        }
+        a {
+            color: #ffffff;
+        }
+
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+    </style>
 </head>
 <body>
-    <h1>
-        Dashboard
-    </h1>
+    <h1>Dashboard</h1>
+    <p>Welcome, <%= username %>!</p>
+    <a href="/logout">Logout</a>
 </body>
 </html>
