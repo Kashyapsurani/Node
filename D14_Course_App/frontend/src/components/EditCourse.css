@@ -3,7 +3,7 @@
     padding: 2rem;
     background-color: #f3f4f6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -18,7 +18,7 @@ h1 {
     animation: fadeInDown 0.4s ease both;
 }
 
-/* Form Container */
+/* Form container */
 .edit-form {
     background-color: #ffffff;
     padding: 2rem;
@@ -54,7 +54,7 @@ h1 {
     border-color: #3b82f6;
 }
 
-/* Buttons */
+/* Button group */
 .button-group {
     display: flex;
     gap: 0.75rem;
@@ -70,6 +70,7 @@ h1 {
     border: none;
 }
 
+/* Save button */
 .bg-green-500 {
     background-color: #10b981;
     color: white;
@@ -80,6 +81,7 @@ h1 {
     transform: scale(1.03);
 }
 
+/* Cancel button */
 .bg-gray-400 {
     background-color: #9ca3af;
     color: white;

@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCourses, addCourse, deleteCourse } from "../features/course/courseSlice";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./CourseList.css";
 
 const CoursesList = () => {
-  const [courses, setCourses] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { courses, status, error } = useSelector((state) => state.course);
+
   const [newCourse, setNewCourse] = useState({
     title: "",
     description: "",
@@ -12,29 +17,23 @@ const CoursesList = () => {
     rating: "",
     price: "",
   });
-  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchCourses();
-  }, []);
+    dispatch(fetchCourses());
+  }, [dispatch]);
 
-  const fetchCourses = async () => {
-    const res = await axios.get("http://localhost:3000/api/course");
-    setCourses(res.data);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewCourse((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/api/course/${id}`);
-    fetchCourses();
-  };
-
-  const handleAddCourse = async () => {
+  const handleAddCourse = () => {
     const courseToSend = {
       ...newCourse,
       rating: parseFloat(newCourse.rating),
       price: parseFloat(newCourse.price),
     };
-    await axios.post("http://localhost:3000/api/course", courseToSend);
+    dispatch(addCourse(courseToSend));
     setNewCourse({
       title: "",
       description: "",
@@ -42,12 +41,10 @@ const CoursesList = () => {
       rating: "",
       price: "",
     });
-    fetchCourses();
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewCourse((prev) => ({ ...prev, [name]: value }));
+  const handleDelete = (id) => {
+    dispatch(deleteCourse(id));
   };
 
   return (
@@ -75,33 +72,37 @@ const CoursesList = () => {
         </button>
       </div>
 
-
       <div className="course-cards-container">
-        {courses.map((course) => (
-          <div key={course._id} className="course-card">
-            <h2 className="text-lg font-bold">{course.title}</h2>
-            <p><strong>Description:</strong> {course.description}</p>
-            <p><strong>Instructor:</strong> {course.instructor}</p>
-            <p><strong>Rating:</strong> {course.rating}</p>
-            <p><strong>Price:</strong> ${course.price}</p>
-            <div className="mt-2">
-              <button
-                className="bg-red-500 text-white px-2 py-1"
-                onClick={() => handleDelete(course._id)}
-              >
-                Delete
-              </button>
-              <button
-                className="bg-yellow-500 text-white px-2 py-1 mr-2"
-                onClick={() => navigate(`/edit/${course._id}`)}
-              >
-                Edit
-              </button>
+        {status === "loading" && <p>Loading courses...</p>}
+        {status === "failed" && <p>Error: {error}</p>}
+        {courses && courses.length > 0 ? (
+          courses.map((course) => (
+            <div key={course._id} className="course-card">
+              <h2 className="text-lg font-bold">{course.title}</h2>
+              <p><strong>Description:</strong> {course.description}</p>
+              <p><strong>Instructor:</strong> {course.instructor}</p>
+              <p><strong>Rating:</strong> {course.rating}</p>
+              <p><strong>Price:</strong> ${course.price}</p>
+              <div className="mt-2">
+                <button
+                  className="bg-red-500 text-white px-2 py-1"
+                  onClick={() => handleDelete(course._id)}
+                >
+                  Delete
+                </button>
+                <button
+                  className="bg-yellow-500 text-white px-2 py-1 ml-2"
+                  onClick={() => navigate(`/edit/${course._id}`)}
+                >
+                  Edit
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>No courses available.</p>
+        )}
       </div>
-
     </div>
   );
 };
