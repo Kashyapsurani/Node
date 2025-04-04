@@ -66,3 +66,43 @@ p[style="color: red;"] {
 p[style="color: green;"] {
     color: green;
 }
+
+.add-blog-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    background: #fefefe;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add-blog-container form {
+    display: flex;
+    flex-direction: column;
+    width: 93%;
+}
+
+.add-blog-container input[type="text"],
+.add-blog-container textarea,
+.add-blog-container input[type="file"] {
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.add-blog-container button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.add-blog-container button:hover {
+    background: #2980b9;
+}

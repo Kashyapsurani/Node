@@ -3,10 +3,12 @@ import Register from "./pages/Register.jsx";
 import Login from "./pages/Login";
 import Blog from "./pages/Blog";
 import AddBlog from "./pages/AddBlog";
+import Navbar from "./pages/Navbar"; // Adjust path as needed
 
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Register />} />
         <Route path="/blog" element={<Blog />} />
