@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .card h3 {
+            margin: 15px 0 5px;
+            font-size: 20px;
+        }
+
+        .card p {
+            margin: 5px 0;
+            color: #444;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .category {
+            font-style: italic;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%- include('partials/navbar', { user }) %>
+
+        <div class="container">
+            <h2>All Products</h2>
+
+            <% if (products.length===0) { %>
+                <p style="text-align: center;">No products available.</p>
+                <% } else { %>
+                    <div class="product-grid">
+                        <% products.forEach(product=> { %>
+                            <div class="card">
+                                <% if (product.imageUrl) { %>
+                                    <img src="<%= product.imageUrl %>" alt="Product Image">
+                                    <% } else { %>
+                                        <img src="https://via.placeholder.com/300x180?text=No+Image" alt="No Image">
+                                        <% } %>
+                                            <h3>
+                                                <%= product.name %>
+                                            </h3>
+                                            <p class="price">$<%= product.price.toFixed(2) %>
+                                            </p>
+                                            <p class="category">
+                                                <%= product.category?.name || 'Uncategorized' %>
+                                            </p>
+                                            <p>Posted by: <%= product.owner?.username || 'Admin' %>
+                                            </p>
+                            </div>
+                            <% }) %> 
+                    </div>
+                    <% } %>
+        </div>
+
+</body>
+
+</html>

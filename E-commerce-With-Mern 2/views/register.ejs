@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register | E-commerce</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            height: 100vh;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 380px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .form-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-box label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .form-box input,
+        .form-box select {
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-box button {
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .form-box button:hover {
+            background-color: #218838;
+        }
+
+        p {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for error message */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('partials/navbar', { user: null }) %>
+        <div class="main">
+            <div class="form-container">
+                <h2>Create an Account</h2>
+
+                <!-- Display error message if exists -->
+                <% if (typeof errorMessage !=='undefined' ) { %>
+                    <div class="error-message">
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+
+                        <form action="/register" method="POST" class="form-box">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" required>
+
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required>
+
+                            <label for="role">Role</label>
+                            <select name="role" id="role" required>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                            </select>
+
+                            <button type="submit">Register</button>
+                        </form>
+                        <p>Already have an account? <a href="/login">Login here</a></p>
+            </div>
+        </div>
+</body>
+
+</html>

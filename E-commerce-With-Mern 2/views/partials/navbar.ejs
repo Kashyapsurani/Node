@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce App</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #1f1f1f;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: color 0.2s ease;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #ff9800;
+        }
+
+        .nav-right a:last-child {
+            color: #f44336;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-left,
+            .nav-right {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+
+<body> 
+
+    <nav>
+        <div class="nav-left">
+            <a href="/">Home</a>
+            <a href="/products">All Products</a>
+            <% if (user) { %>
+                <a href="/products/my">My Products</a>
+                <a href="/products/add">Add Product</a>
+                <a href="/categories">Categories</a>
+                <% } %>
+        </div>
+        <div class="nav-right">
+            <% if (user) { %>
+                <a href="/logout">Logout (<%= user.username %>)</a>
+                <% } else { %>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                    <% } %>
+        </div>
+    </nav>
+
+</body>
+
+</html>
